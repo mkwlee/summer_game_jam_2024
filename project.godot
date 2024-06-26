@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=750
-window/size/viewport_height=750
+window/size/viewport_width=720
+window/size/viewport_height=720
+window/size/resizable=false
 
 [editor]
 
@@ -45,6 +46,13 @@ change_world={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="White Tiles"
+2d_physics/layer_3="Black Tiles"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+viewport/hdr_2d=true

@@ -186,18 +186,7 @@ size = Vector2(24, 32)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -16)
-collision_mask = 2
 script = ExtResource("1_xmmvq")
-
-[node name="Spotlight" type="PointLight2D" parent="."]
-light_mask = 7
-color = Color(0.666667, 0.215686, 0.27451, 1)
-range_item_cull_mask = 7
-shadow_enabled = true
-shadow_item_cull_mask = 2
-texture = ExtResource("3_77f1g")
-offset = Vector2(175, 0)
-texture_scale = 2.43
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -207,3 +196,13 @@ autoplay = "idle_black"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7d4hl")
+
+[node name="Spotlight" type="PointLight2D" parent="."]
+light_mask = 7
+position = Vector2(0, 1)
+color = Color(0.666667, 0.215686, 0.27451, 1)
+range_item_cull_mask = 2
+shadow_enabled = true
+texture = ExtResource("3_77f1g")
+offset = Vector2(175, 0)
+texture_scale = 2.43

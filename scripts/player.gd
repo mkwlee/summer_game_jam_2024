@@ -5,6 +5,7 @@ const SPEED : float = 150
 const JUMP_VELOCITY = -400.0
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var game_manager = %GameManager
+@onready var spotlight = $Spotlight
 
 var player_state = 'black'
 
@@ -45,11 +46,22 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if Input.is_action_just_pressed('change_world'):
-		player_state = switch_sprite(game_manager.switch())
+		player_state = game_manager.switch_world()
+		switch_sprite()
+		
+	var light_direction = get_global_mouse_position() - global_position
+	light_direction = light_direction.normalized()
+	spotlight.rotation = atan2(light_direction.y, light_direction.x)
 
-func switch_sprite(world_state):
-	if world_state == 'white':
-		print(animated_sprite.get_animation())
-	elif world_state == 'black':
-		print(animated_sprite.get_animation())
-	return world_state
+func switch_sprite():
+	if player_state == 'white':
+		spotlight.color = Color(100.0/255.0, 180.0/255.0, 45.0/255.0)
+		set_collision_mask_value(2, 0)
+		set_collision_mask_value(3, 1)
+		spotlight.shadow_item_cull_mask = 4
+		
+	elif player_state == 'black':
+		spotlight.color = Color(170 / 255.0, 55 / 255.0, 70 / 255.0, 1.0)
+		set_collision_mask_value(3, 0)
+		set_collision_mask_value(2, 1)
+		spotlight.shadow_item_cull_mask = 2
