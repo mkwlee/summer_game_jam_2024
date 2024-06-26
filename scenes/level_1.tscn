@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqj6qx04igui6"]
+
+[ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_xlm05"]
+[ext_resource type="Texture2D" uid="uid://pn7st7oqntqb" path="res://sprites/tileset.png" id="2_w3cow"]
+[ext_resource type="PackedScene" uid="uid://cdl234r7rdtsk" path="res://scenes/player.tscn" id="3_v3kbr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r1tku"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_416xo"]
+texture = ExtResource("2_w3cow")
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_haywo"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_416xo")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c5ghg"]
+
+[sub_resource type="Gradient" id="Gradient_131u3"]
+offsets = PackedFloat32Array(0.545455, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dr4bh"]
+gradient = SubResource("Gradient_131u3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.775229, 0.270642)
+
+[node name="Level 1" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_xlm05")
+
+[node name="WhiteTiles" type="TileMap" parent="."]
+unique_name_in_owner = true
+light_mask = 2
+z_index = -1
+material = SubResource("CanvasItemMaterial_r1tku")
+rotation = 0.00160169
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_haywo")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 65537, 1, 0, 65537, 1, 65542, 65537, 1, 131078, 65537, 1, 131079, 65537, 1, 131080, 65537, 1, 196616, 65537, 1, 196617, 65537, 1, 196618, 65537, 1)
+
+[node name="BlackTiles" type="TileMap" parent="."]
+unique_name_in_owner = true
+light_mask = 2
+z_index = -1
+material = SubResource("CanvasItemMaterial_c5ghg")
+rotation = 0.00160169
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_haywo")
+format = 2
+layer_0/tile_data = PackedInt32Array(2, 196609, 1, 3, 196609, 1, 4, 196609, 1, 393227, 196609, 1, 393226, 196609, 1, 393225, 196609, 1, 393224, 196609, 1)
+
+[node name="Spotlight" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(12, 27)
+color = Color(0.666667, 0.215686, 0.27451, 1)
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_dr4bh")
+texture_scale = 2.43
+
+[node name="Player" parent="." instance=ExtResource("3_v3kbr")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 24)
