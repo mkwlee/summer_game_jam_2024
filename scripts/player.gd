@@ -5,7 +5,8 @@ const SPEED : float = 150
 const JUMP_VELOCITY = -400.0
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var game_manager = %GameManager
-@onready var spotlight = $Spotlight
+@onready var spotlight_trail = $SpotlightTrail
+@onready var spotlight_focus = $SpotlightFocus
 
 var player_state = 'black'
 
@@ -49,19 +50,26 @@ func _physics_process(delta):
 		player_state = game_manager.switch_world()
 		switch_sprite()
 		
+		
 	var light_direction = get_global_mouse_position() - global_position
 	light_direction = light_direction.normalized()
-	spotlight.rotation = atan2(light_direction.y, light_direction.x)
+	spotlight_focus.global_position = get_global_mouse_position()
+	spotlight_trail.rotation = atan2(light_direction.y, light_direction.x)
+	spotlight_trail.scale.x = get_global_mouse_position().distance_to(global_position) / 120
 
 func switch_sprite():
 	if player_state == 'white':
-		spotlight.color = Color(100.0/255.0, 180.0/255.0, 45.0/255.0)
 		set_collision_mask_value(2, 0)
 		set_collision_mask_value(3, 1)
-		spotlight.shadow_item_cull_mask = 4
+		
+		spotlight_trail.color = Color(100.0/255.0, 180.0/255.0, 45.0/255.0)
+		spotlight_focus.color = Color(100.0/255.0, 180.0/255.0, 45.0/255.0)
+		spotlight_trail.shadow_item_cull_mask = 4
 		
 	elif player_state == 'black':
-		spotlight.color = Color(170 / 255.0, 55 / 255.0, 70 / 255.0, 1.0)
 		set_collision_mask_value(3, 0)
 		set_collision_mask_value(2, 1)
-		spotlight.shadow_item_cull_mask = 2
+		
+		spotlight_trail.color = Color(170 / 255.0, 55 / 255.0, 70 / 255.0, 1.0)
+		spotlight_focus.color = Color(170 / 255.0, 55 / 255.0, 70 / 255.0, 1.0)
+		spotlight_trail.shadow_item_cull_mask = 2

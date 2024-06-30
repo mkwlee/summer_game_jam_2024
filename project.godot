@@ -11,15 +11,14 @@ config_version=5
 [application]
 
 config/name="Summer Game Jam 2024"
-run/main_scene="res://scenes/level_1.tscn"
+run/main_scene="res://scenes/level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=720
-window/size/resizable=false
+window/size/viewport_width=1280
+window/size/viewport_height=704
 
 [editor]
 
@@ -48,6 +47,11 @@ change_world={
 
 [layer_names]
 
+2d_render/layer_1="Player"
+2d_render/layer_2="Black"
+2d_render/layer_3="White"
+2d_render/layer_4="Trail"
+2d_render/layer_5="Focus"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="White Tiles"
 2d_physics/layer_3="Black Tiles"
