@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Summer Game Jam 2024"
-run/main_scene="res://scenes/level.tscn"
+run/main_scene="res://scenes/levels/level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+BackgroundMusic="*res://scenes/background_music.tscn"
 
 [display]
 
@@ -55,6 +59,7 @@ change_world={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="White Tiles"
 2d_physics/layer_3="Black Tiles"
+2d_physics/layer_4="Neutral Tiles"
 
 [rendering]
 

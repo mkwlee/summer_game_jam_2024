@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://bf3iyjlir1fnt"]
+
+[ext_resource type="Script" path="res://scripts/endzone.gd" id="1_b4wbv"]
+[ext_resource type="Texture2D" uid="uid://c4213pvfgha7g" path="res://assets/sprites/portal.png" id="1_ovdsg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tupl6"]
+atlas = ExtResource("1_ovdsg")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p273m"]
+atlas = ExtResource("1_ovdsg")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2ic6"]
+atlas = ExtResource("1_ovdsg")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg25v"]
+atlas = ExtResource("1_ovdsg")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1cwm"]
+atlas = ExtResource("1_ovdsg")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xtuk"]
+atlas = ExtResource("1_ovdsg")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ibnx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tupl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p273m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2ic6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg25v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1cwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xtuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kxom7"]
+radius = 8.0
+height = 48.0
+
+[node name="Endzone" type="Area2D"]
+position = Vector2(0, -33)
+script = ExtResource("1_b4wbv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1ibnx")
+autoplay = "default"
+frame_progress = 0.27876
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kxom7")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

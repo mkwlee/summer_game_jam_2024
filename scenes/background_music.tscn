@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://imugarig4yys"]
+
+[ext_resource type="AudioStream" uid="uid://t5xsx0kk51q5" path="res://assets/music/white_song.mp3" id="1_vxghb"]
+[ext_resource type="Script" path="res://scripts/background_music.gd" id="2_cre80"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_vxghb")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_cre80")
