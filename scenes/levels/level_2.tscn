@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bulljdumrxcmk"]
+[gd_scene load_steps=15 format=3 uid="uid://bulljdumrxcmk"]
 
 [ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_4mdxt"]
 [ext_resource type="Material" uid="uid://yhe4b28lfaua" path="res://canvas/white_canvas_material.tres" id="2_3xq84"]
@@ -7,8 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cxagbderok4e5" path="res://scenes/killzone.tscn" id="5_q5dhu"]
 [ext_resource type="PackedScene" uid="uid://bf3iyjlir1fnt" path="res://scenes/endzone.tscn" id="6_0vays"]
 [ext_resource type="PackedScene" uid="uid://cdl234r7rdtsk" path="res://scenes/player.tscn" id="7_wp64e"]
-[ext_resource type="LabelSettings" uid="uid://ccuy7k6rnc46w" path="res://canvas/play_hints_white.tres" id="8_nvuql"]
-[ext_resource type="LabelSettings" uid="uid://bv12t3wsagrry" path="res://canvas/play_hints_black.tres" id="8_webjd"]
+[ext_resource type="LabelSettings" uid="uid://ccuy7k6rnc46w" path="res://canvas/play_hints.tres" id="8_nvuql"]
 [ext_resource type="PackedScene" uid="uid://bfqcl3c6t5hau" path="res://scenes/static_light.tscn" id="10_hato7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_22mh1"]
@@ -102,7 +101,7 @@ offset_right = 299.0
 offset_bottom = 231.0
 text = "Move your mouse to light up 
 platforms from the other world"
-label_settings = ExtResource("8_webjd")
+label_settings = ExtResource("8_nvuql")
 vertical_alignment = 2
 
 [node name="Label3" type="Label" parent="."]
@@ -114,7 +113,7 @@ text = "Platform too high?
 Shift worlds to 
 enable your jump 
 again!"
-label_settings = ExtResource("8_webjd")
+label_settings = ExtResource("8_nvuql")
 horizontal_alignment = 2
 vertical_alignment = 2
 

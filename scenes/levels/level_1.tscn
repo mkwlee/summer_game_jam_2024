@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cdl234r7rdtsk" path="res://scenes/player.tscn" id="5_fnoiq"]
 [ext_resource type="PackedScene" uid="uid://cxagbderok4e5" path="res://scenes/killzone.tscn" id="6_ny4ra"]
 [ext_resource type="PackedScene" uid="uid://bf3iyjlir1fnt" path="res://scenes/endzone.tscn" id="7_k0g5c"]
-[ext_resource type="LabelSettings" uid="uid://ccuy7k6rnc46w" path="res://canvas/play_hints_white.tres" id="8_h58tt"]
+[ext_resource type="LabelSettings" uid="uid://ccuy7k6rnc46w" path="res://canvas/play_hints.tres" id="8_h58tt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_22mh1"]
 
