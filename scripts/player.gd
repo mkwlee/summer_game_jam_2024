@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var game_manager = %GameManager
 @onready var spotlight_focus = $SpotlightFocus
+@onready var collision_shape = $CollisionShape2D
 
 @onready var jump = $Jump
 @onready var switch = $Switch
@@ -21,6 +22,7 @@ var wall_jump_state = false
 var is_static = false
 var platform_velocity = Vector2(0, 0)
 var was_on_floor = false
+var gravity_direction = 1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -47,33 +49,36 @@ func _physics_process(delta):
 		player_movement(delta)
 		player_jump_and_switch(delta)
 	move_and_slide()
-	
+
 	spotlight_movement()
 
 func player_jump_and_switch(delta):
-	if is_on_floor():
+	if is_on_floor() and gravity_direction == 1 or is_on_ceiling() and gravity_direction == -1:
 		jump_allowed = true
 		switch_allowed = false
 		
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("jump"):
 			player_jump()
 	else:
 		if was_on_floor:
 			switch_allowed = true
 			
-		velocity.y += gravity * delta
+		velocity.y += gravity_direction * gravity * delta
 		if Input.is_action_just_pressed('change_world') and switch_allowed and game_manager.world_shift_on:
 			switch.play()
 			player_switch(game_manager.world_switch())
 			switch_allowed = false
 			jump_allowed = true
 			
-		if Input.is_action_just_pressed("ui_accept") and jump_allowed:
+		if Input.is_action_just_pressed("jump") and jump_allowed:
 			player_jump()
 			
-	was_on_floor = is_on_floor()
+	if gravity_direction == 1:
+		was_on_floor = is_on_floor()
+	elif gravity_direction == -1:
+		was_on_floor = is_on_ceiling()
 func player_jump():
-	velocity.y = -JUMP_VELOCITY+platform_velocity.y
+	velocity.y = -gravity_direction*(JUMP_VELOCITY+platform_velocity.y)
 	platform_velocity.x = get_platform_velocity().x
 	
 	jump.play()
@@ -98,14 +103,14 @@ func player_movement(delta):
 			animated_sprite.flip_h = true
 		
 		# Animation
-		if is_on_floor():
+		if is_on_floor() and gravity_direction == 1 or is_on_ceiling() and gravity_direction == -1:
 			var current_frame = animated_sprite.get_frame()
 			var current_progress = animated_sprite.get_frame_progress()	
 			animated_sprite.play("walk_"+player_state)
 			animated_sprite.set_frame_and_progress(current_frame, current_progress)
 	else:
 		# Animation
-		if is_on_floor():
+		if is_on_floor() and gravity_direction == 1 or is_on_ceiling() and gravity_direction == -1:
 			velocity.x = move_toward(velocity.x, 0, SPEED_VELOCITY)
 			var current_frame = animated_sprite.get_frame()
 			var current_progress = animated_sprite.get_frame_progress()	

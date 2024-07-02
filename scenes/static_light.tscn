@@ -14,6 +14,7 @@ rotation = 1.5708
 scale = Vector2(2, 2)
 color = Color(0.392157, 0.705882, 0.176471, 1)
 range_item_cull_mask = 7
+shadow_item_cull_mask = 31
 texture = ExtResource("1_06pva")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

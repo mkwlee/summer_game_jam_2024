@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxagbderok4e5"]
+[gd_scene load_steps=4 format=3 uid="uid://cxagbderok4e5"]
 
 [ext_resource type="Script" path="res://scripts/killzone.gd" id="1_tnop3"]
+[ext_resource type="AudioStream" uid="uid://8cpox2advlwn" path="res://assets/sfx/death.wav" id="2_ftwrt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4oir6"]
 
@@ -12,6 +13,10 @@ script = ExtResource("1_tnop3")
 shape = SubResource("WorldBoundaryShape2D_4oir6")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ftwrt")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

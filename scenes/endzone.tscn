@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf3iyjlir1fnt"]
+[gd_scene load_steps=12 format=3 uid="uid://bf3iyjlir1fnt"]
 
 [ext_resource type="Script" path="res://scripts/endzone.gd" id="1_b4wbv"]
 [ext_resource type="Texture2D" uid="uid://c4213pvfgha7g" path="res://assets/sprites/portal.png" id="1_ovdsg"]
+[ext_resource type="AudioStream" uid="uid://bga5k2lw6c6my" path="res://assets/sfx/level_complete.wav" id="3_ktcmm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tupl6"]
 atlas = ExtResource("1_ovdsg")
@@ -71,6 +72,10 @@ frame_progress = 0.27876
 shape = SubResource("CapsuleShape2D_kxom7")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Portal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ktcmm")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

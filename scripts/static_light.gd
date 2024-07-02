@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_idelta):
 	if game_manager.world_state == 'white':
 		point_light.color = COLOR_RED
 	else:

@@ -2,6 +2,7 @@ extends Node
 
 @onready var tile_map = %TileMap
 @onready var player = %Player
+@onready var killzone = $"../Killzone"
 
 const WHITE_CANVAS_MATERIAL = preload("res://canvas/white_canvas_material.tres")
 const BLACK_CANVAS_MATERIAL = preload("res://canvas/black_canvas_material.tres")
@@ -27,7 +28,10 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if Input.is_action_just_pressed("escape_level"):
+		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
+	if Input.is_action_just_pressed("self_destruct"):
+		killzone.player_death()
 	
 func world_switch():
 	if world_state == 'white': #World is BLACK
